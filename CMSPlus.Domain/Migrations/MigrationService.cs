@@ -21,7 +21,7 @@ public class MigrationService:IMigrationService
         };
     }
 
-    public void Migrate()
+    public void Migrate()   
     {
         try
         {
