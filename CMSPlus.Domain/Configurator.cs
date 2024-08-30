@@ -20,9 +20,10 @@ public static class Configurator
     {
         services.AddSingleton<IMigrationService>(new MigrationService(connectionString));
         using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-        {
+        {        
             var migrationService = serviceProvider.GetRequiredService<IMigrationService>();
-            migrationService.Migrate();
+            migrationService.Migrate();    
+
         }
     }
 }

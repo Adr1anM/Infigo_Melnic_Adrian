@@ -25,10 +25,21 @@ public class MigrationService:IMigrationService
     {
         try
         {
+            System.Diagnostics.Debug.Write(">>Starting migration..........");
             _evolve.Migrate();
+            System.Diagnostics.Debug.Write(">>Migration Completetd..........");
+
+            var history = _evolve.AppliedMigrations;
+            System.Diagnostics.Debug.WriteLine("Applied migrations:");
+            foreach (var migration in history)
+            {
+                System.Diagnostics.Debug.WriteLine($"************{migration}");
+            }
+
         }
         catch (Exception ex)
         {
+            System.Diagnostics.Debug.Write($">>Failed to run migration..........{ex}");
             throw new Exception($"Failed to run migration", ex);
         }
     }
