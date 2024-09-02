@@ -4,6 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "_Layout";
 }
+
 <div class="container m-3">
     <h1 class="row-12 text-black">@Model.Title</h1>
     <div class="row">
@@ -13,5 +14,23 @@
     <p class="row-12 text-black">@Html.Raw(Model.Body)</p>
     <div class="row">
         <p class="col-12 text-black-50 text-end">System name: @Model.SystemName</p>
+    </div>
+
+    <div class="mt-4 p-3" style="background-color: #f8f9fa;">
+        <h3 class="text-black">Add Comment</h3>
+        <form asp-controller="Comment" asp-action="Create" method="post">
+            <input type="hidden" asp-for="NewComment.TopicId" value="@Model.Id" />
+            <div class="mb-3">
+                <label asp-for="NewComment.FullName" class="form-label text-black">Full Name</label>
+                <input asp-for="NewComment.FullName" class="form-control" placeholder="Enter your full name" />
+                <span asp-validation-for="NewComment.FullName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewComment.Content" class="form-label text-black">Comment</label>
+                <textarea asp-for="NewComment.Content" class="form-control" rows="4" placeholder="Enter your comment"></textarea>
+                <span asp-validation-for="NewComment.Content" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
     </div>
 </div>
