@@ -24,7 +24,7 @@ namespace CMSPlus.Presentation.Controllers
             var entity = topic.NewComment;
             var commentEntity = _mapper.Map<CommentCreateModel, CommentEntity>(entity);
             await _commentService.Create(commentEntity);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Topic",new { systemName = topic.SystemName});
         }
 
         public IActionResult Index()
